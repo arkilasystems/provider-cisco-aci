@@ -7,17 +7,34 @@ import (
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"null_resource": idWithStub(),
-}
+	// Tenant Resources
+	"aci_tenant":               config.IdentifierFromProvider,
+	"aci_application_profile":  config.IdentifierFromProvider,
+	"aci_application_epg":      config.IdentifierFromProvider,
 
-func idWithStub() config.ExternalName {
-	e := config.IdentifierFromProvider
-	e.GetExternalNameFn = func(tfstate map[string]any) (string, error) {
-		en, _ := config.IDAsExternalName(tfstate)
-		return en, nil
-	}
-	return e
+	// Networking Resources
+	"aci_vrf":                  config.IdentifierFromProvider,
+	"aci_bridge_domain":        config.IdentifierFromProvider,
+	"aci_subnet":               config.IdentifierFromProvider,
+
+	// Contract Resources
+	"aci_contract":             config.IdentifierFromProvider,
+	"aci_contract_subject":     config.IdentifierFromProvider,
+	"aci_filter":               config.IdentifierFromProvider,
+	"aci_filter_entry":         config.IdentifierFromProvider,
+
+	// Physical Resources
+	"aci_l3_outside":           config.IdentifierFromProvider,
+	"aci_external_network_instance_profile": config.IdentifierFromProvider,
+
+	// Domain and Pool Resources
+	"aci_vmm_domain":           config.IdentifierFromProvider,
+	"aci_physical_domain":      config.IdentifierFromProvider,
+	"aci_vlan_pool":            config.IdentifierFromProvider,
+
+	// Fabric Resources
+	"aci_fabric_node":          config.IdentifierFromProvider,
+	"aci_pod_maintenance_group": config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
