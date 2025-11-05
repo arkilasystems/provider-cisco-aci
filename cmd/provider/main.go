@@ -34,14 +34,14 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
-	apisCluster "github.com/crossplane/upjet-provider-template/apis/cluster"
-	apisNamespaced "github.com/crossplane/upjet-provider-template/apis/namespaced"
-	"github.com/crossplane/upjet-provider-template/config"
-	"github.com/crossplane/upjet-provider-template/internal/clients"
-	controllerCluster "github.com/crossplane/upjet-provider-template/internal/controller/cluster"
-	controllerNamespaced "github.com/crossplane/upjet-provider-template/internal/controller/namespaced"
-	"github.com/crossplane/upjet-provider-template/internal/features"
-	"github.com/crossplane/upjet-provider-template/internal/version"
+	apisCluster "github.com/arkilasystems/provider-cisco-aci/apis/cluster"
+	apisNamespaced "github.com/arkilasystems/provider-cisco-aci/apis/namespaced"
+	"github.com/arkilasystems/provider-cisco-aci/config"
+	"github.com/arkilasystems/provider-cisco-aci/internal/clients"
+	controllerCluster "github.com/arkilasystems/provider-cisco-aci/internal/controller/cluster"
+	controllerNamespaced "github.com/arkilasystems/provider-cisco-aci/internal/controller/namespaced"
+	"github.com/arkilasystems/provider-cisco-aci/internal/features"
+	"github.com/arkilasystems/provider-cisco-aci/internal/version"
 )
 
 const (

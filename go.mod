@@ -1,4 +1,4 @@
-module github.com/crossplane/upjet-provider-template
+module github.com/arkilasystems/provider-cisco-aci
 
 go 1.24.7
 

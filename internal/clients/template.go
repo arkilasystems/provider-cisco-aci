@@ -11,8 +11,8 @@ import (
 
 	"github.com/crossplane/upjet/v2/pkg/terraform"
 
-	clusterv1beta1 "github.com/crossplane/upjet-provider-template/apis/cluster/v1beta1"
-	namespacedv1beta1 "github.com/crossplane/upjet-provider-template/apis/namespaced/v1beta1"
+	clusterv1beta1 "github.com/arkilasystems/provider-cisco-aci/apis/cluster/v1beta1"
+	namespacedv1beta1 "github.com/arkilasystems/provider-cisco-aci/apis/namespaced/v1beta1"
 )
 
 const (
@@ -21,7 +21,7 @@ const (
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
-	errUnmarshalCredentials = "cannot unmarshal template credentials as JSON"
+	errUnmarshalCredentials = "cannot unmarshal ACI credentials as JSON"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -50,11 +50,18 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
-		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
+		// Set credentials in Terraform provider configuration for Cisco ACI.
+		ps.Configuration = map[string]any{
+			"url":      creds["url"],
 			"username": creds["username"],
 			"password": creds["password"],
-		}*/
+		}
+
+		// Optional: Set insecure flag if provided
+		if insecure, ok := creds["insecure"]; ok {
+			ps.Configuration["insecure"] = insecure
+		}
+
 		return ps, nil
 	}
 }
